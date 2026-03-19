@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Charity Cup</title>
+  <style>
+    :root {
+      --bg: #071318;
+      --bg-soft: #0d1d24;
+      --card: #10242d;
+      --card-2: #12313d;
+      --primary: #2c6b7c;
+      --primary-2: #3d8797;
+      --accent: #d8b15b;
+      --text: #f4f1e8;
+      --muted: #b9c7cd;
+      --line: rgba(255,255,255,0.09);
+      --max: 1180px;
+      --radius: 22px;
+      --shadow: 0 18px 45px rgba(0,0,0,0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(61,135,151,0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(216,177,91,0.10), transparent 25%),
+        linear-gradient(180deg, #050d11 0%, #09161b 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(5, 13, 17, 0.75);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    header {
+      padding: 56px 0 34px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.84rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 0.98;
+      margin: 0 0 18px;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-2), var(--primary));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.18);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(18,49,61,0.95), rgba(10,24,30,0.98));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(216,177,91,0.16), transparent 38%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: min(100%, 360px);
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35));
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    section {
+      padding: 34px 0 78px;
+    }
+
+    .section-head {
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(16,36,45,0.96), rgba(10,24,30,0.96));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    .highlight {
+      border: 1px solid rgba(216,177,91,0.22);
+      background: linear-gradient(180deg, rgba(31,39,31,0.95), rgba(16,28,31,0.98));
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .impact-box {
+      text-align: center;
+      padding: 24px 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(18,49,61,0.95), rgba(10,24,30,0.95));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .impact-box strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .sponsor-level {
+      border-top: 4px solid var(--accent);
+    }
+
+    .contact {
+      background: linear-gradient(135deg, rgba(44,107,124,0.95), rgba(13,29,36,0.98));
+    }
+
+    .contact p, .contact li {
+      color: rgba(255,255,255,0.88);
+    }
+
+    .form-placeholder {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.24);
+      color: rgba(255,255,255,0.88);
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 24px 0 34px;
+      text-align: center;
+      color: #8fa4ad;
+      font-size: 0.92rem;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid-2,
+      .grid-3,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      header {
+        padding-top: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <img src="logo.png" alt="Apex Charity Cup logo">
+          <span>Apex Charity Cup</span>
+        </div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#event">Event Info</a>
+          <a href="#sponsors">Sponsors</a>
+          <a href="#impact">Impact</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Student-Led • Community-Focused • For St. Jude</span>
+          <h1>Play for Purpose.<br>Compete for a Cause.</h1>
+          <p>
+            The Apex Charity Cup is a two-day soccer tournament uniting athletes, local businesses,
+            families, and the community to raise support for St. Jude Children’s Research Hospital.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#sponsors" class="btn btn-primary">Become a Sponsor</a>
+            <a href="#contact" class="btn btn-secondary">Get Involved</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="pill">April 25–26</div>
+            <div class="pill">Apex Friendship High School</div>
+            <div class="pill">Hosted through Play for Peace Foundation</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="logo.png" alt="Apex Charity Cup logo large" class="hero-logo">
+          <h3>Apex Charity Cup 2026</h3>
+          <p>
+            A competitive, community-centered event built to create real local impact and support
+            life-changing care at St. Jude.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About the Event</h2>
+        <p>
+          The Apex Charity Cup is a student-led tournament designed to combine athletics,
+          philanthropy, and community engagement in one high-energy weekend event.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>What It Is</h3>
+          <p>
+            A two-day soccer tournament featuring competitive matches, local vendors, sponsor booths,
+            and a community atmosphere that brings people together around a meaningful cause.
+          </p>
+        </div>
+
+        <div class="card highlight">
+          <h3>Why It Matters</h3>
+          <ul>
+            <li>All proceeds benefit St. Jude Children’s Research Hospital</li>
+            <li>Creates a real service opportunity through sports</li>
+            <li>Highlights student leadership and community collaboration</li>
+            <li>Connects local businesses with a strong local audience</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Impact</h2>
+        <p>
+          This event is built to do more than host games. It is meant to raise awareness, bring people
+          together, and create tangible support for families affected by childhood illness.
+        </p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-box">
+          <strong>100%</strong>
+          <span>Mission-driven event focus</span>
+        </div>
+        <div class="impact-box">
+          <strong>2 Days</strong>
+          <span>Competition and community engagement</span>
+        </div>
+        <div class="impact-box">
+          <strong>Student-Led</strong>
+          <span>Organized with leadership and purpose</span>
+        </div>
+        <div class="impact-box">
+          <strong>Local Reach</strong>
+          <span>Athletes, families, vendors, and sponsors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="event">
+    <div class="container">
+      <div class="section-head">
+        <h2>Event Information</h2>
+        <p>
+          The tournament is designed to offer competitive play while creating a welcoming,
+          family-friendly experience for the broader community.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Open Bracket</h3>
+          <ul>
+            <li>Ages 12+</li>
+            <li>7v7 format</li>
+            <li>15-minute halves</li>
+            <li>Open-registration teams</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Elite Bracket</h3>
+          <ul>
+            <li>High school and club-level teams</li>
+            <li>11v11 format</li>
+            <li>Certified referees</li>
+            <li>Competitive environment</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Community Experience</h3>
+          <ul>
+            <li>Food trucks and vendors</li>
+            <li>Sponsor booths and activations</li>
+            <li>On-site recognition</li>
+            <li>Family-friendly event atmosphere</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sponsors">
+    <div class="container">
+      <div class="section-head">
+        <h2>Sponsorship Opportunities</h2>
+        <p>
+          Sponsoring the Apex Charity Cup allows businesses to support a respected cause while gaining
+          visibility among athletes, families, and the local community.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card sponsor-level">
+          <h3>Why Get Involved</h3>
+          <ul>
+            <li>Support St. Jude Children’s Research Hospital</li>
+            <li>Increase brand visibility locally and on campus</li>
+            <li>Connect with students, families, and community members</li>
+            <li>Receive digital and on-site promotional recognition</li>
+            <li>Show commitment to service and community impact</li>
+          </ul>
+        </div>
+
+        <div class="card sponsor-level">
+          <h3>Sponsorship Levels</h3>
+          <ul>
+            <li><strong>Food Vendor:</strong> Free setup, vendors keep profits</li>
+            <li><strong>In-Kind Sponsor:</strong> Prizes or gear with promotion included</li>
+            <li><strong>Direct Sponsor:</strong> Booth and social media promotion</li>
+            <li><strong>Premium Sponsor:</strong> Expanded branding, announcements, and more</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="card contact" id="contact">
+        <div class="section-head">
+          <h2 style="margin-bottom:10px;">Contact & Registration</h2>
+          <p>
+            Interested in sponsoring, partnering, registering, or learning more? Reach out to the Apex Charity Cup team.
+          </p>
+        </div>
+
+        <p><strong>Email:</strong> divajain731@gmail.com</p>
+        <p><strong>Organization:</strong> Apex Charity Cup / Play for Peace Foundation</p>
+
+        <div class="form-placeholder">
+          Registration form coming soon.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Apex Charity Cup · Supporting St. Jude Children’s Research Hospital
+    </div>
+  </footer>
+</body>
+</html>
